@@ -217,14 +217,14 @@
 
     /* Hero Section */
     .hero {
-      min-height: 60vh; /* Reduced from 100vh to 60vh for medium size */
+      min-height: 60vh;
       background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b5998 100%);
       position: relative;
       display: flex;
       align-items: center;
       overflow: hidden;
-      padding: 60px 0; /* Reduced padding */
-      margin-top: 60px; /* Adjusted for fixed navbar */
+      padding: 60px 0;
+      margin-top: 60px;
     }
 
     .hero::before {
@@ -420,7 +420,7 @@
     }
 
     .dropdown-content.active {
-      max-height: 1200px;
+      max-height: 1200px; /* Adjusted to accommodate content */
     }
 
     .dropdown-inner {
@@ -491,8 +491,8 @@
       font-weight: 600;
     }
 
-    /* Table Styles for BoS */
-    .bos-table {
+    /* Table Styles for BoS and Benchmarking */
+    .bos-table, .benchmark-table {
       overflow-x: auto;
       background: rgba(255, 255, 255, 0.6);
       border-radius: var(--border-radius);
@@ -501,48 +501,50 @@
       box-shadow: var(--shadow);
     }
 
-    .bos-table table {
+    .bos-table table, .benchmark-table table {
       width: 100%;
       border-collapse: collapse;
       font-size: clamp(0.85rem, 1.5vw, 0.9rem);
     }
 
-    .bos-table thead tr {
+    .bos-table thead tr, .benchmark-table thead tr {
       background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
       border-bottom: 2px solid var(--accent-light);
     }
 
-    .bos-table th {
+    .bos-table th, .benchmark-table th {
       padding: 0.75rem;
       text-align: left;
       font-weight: 600;
       color: var(--accent);
     }
 
-    .bos-table tbody tr {
+    .bos-table tbody tr, .benchmark-table tbody tr {
       border-bottom: 1px solid rgba(59, 130, 246, 0.1);
       transition: var(--transition);
     }
 
-    .bos-table tbody tr:hover {
+    .bos-table tbody tr:hover, .benchmark-table tbody tr:hover {
       background: rgba(255, 255, 255, 0.2);
     }
 
-    .bos-table td {
+    .bos-table td, .benchmark-table td {
       padding: 0.75rem;
     }
 
-    .bos-table tbody tr td:first-child {
+    .bos-table tbody tr td:first-child, .benchmark-table tbody tr td:first-child {
       color: var(--text-secondary);
     }
 
-    .bos-table tbody tr td:nth-child(2) {
+    .bos-table tbody tr td:nth-child(2), .benchmark-table tbody tr td:nth-child(2) {
       color: var(--text);
       font-weight: 500;
     }
 
     .bos-table tbody tr td:nth-child(3),
-    .bos-table tbody tr td:nth-child(4) {
+    .bos-table tbody tr td:nth-child(4),
+    .benchmark-table tbody tr td:nth-child(3),
+    .benchmark-table tbody tr td:nth-child(4) {
       color: var(--text-secondary);
     }
 
@@ -758,16 +760,18 @@
         text-align: center;
       }
 
-      .bos-table {
+      .bos-table, .benchmark-table {
         padding: 0.5rem;
       }
 
-      .bos-table table {
+      .bos-table table, .benchmark-table table {
         font-size: clamp(0.8rem, 1.4vw, 0.85rem);
       }
 
       .bos-table th,
-      .bos-table td {
+      .bos-table td,
+      .benchmark-table th,
+      .benchmark-table td {
         padding: 0.5rem;
       }
     }
@@ -877,16 +881,18 @@
         justify-content: center;
       }
 
-      .bos-table {
+      .bos-table, .benchmark-table {
         padding: 0.3rem;
       }
 
-      .bos-table table {
+      .bos-table table, .benchmark-table table {
         font-size: clamp(0.7rem, 1.2vw, 0.8rem);
       }
 
       .bos-table th,
-      .bos-table td {
+      .bos-table td,
+      .benchmark-table th,
+      .benchmark-table td {
         padding: 0.4rem;
       }
     }
@@ -943,7 +949,7 @@
       <h1>IQAC & Quality Initiatives</h1>
       <h3>Our Commitment</h3>
       <div class="icon"><i class="fas fa-star"></i></div>
-      <p>The Department has a dedicated Internal Quality Assurance Cell (IQAC) Coordinator who ensures continuous quality enhancement in all academic and administrative processes.</p>
+      <p>The Department of Computer Science & Engineering actively engages in the Internal Quality Assurance Cell (IQAC) framework to strengthen teaching, learning, and academic governance.</p>
       <div class="hero-card">
         <div class="program-icon">
           <i class="fas fa-laptop-code"></i>
@@ -961,23 +967,38 @@
         <!-- IQAC & Quality Initiatives -->
         <div class="dropdown-system scroll-reveal">
           <div class="dropdown-item">
-            <div class="dropdown-header" onclick="toggleDropdown('iqac-content')" role="button" aria-expanded="false" aria-controls="iqac-content">
+            <div class="dropdown-header" role="button" aria-expanded="false" aria-controls="iqac-content">
               <h3 class="dropdown-title">IQAC & Quality Initiatives</h3>
               <i class="fas fa-chevron-down dropdown-icon" id="iqac-icon"></i>
             </div>
             <div class="dropdown-content" id="iqac-content" aria-hidden="true">
               <div class="dropdown-inner">
                 <div class="objective-item">
-                  <h4 class="objective-title">Department IQAC Coordinator</h4>
-                  <p class="objective-description">The Department has a dedicated Internal Quality Assurance Cell (IQAC) Coordinator who ensures continuous quality enhancement in all academic and administrative processes.</p>
+                  <h4 class="objective-title">IQAC Coordinators</h4>
+                  <p class="objective-description">
+                    <strong>Dr. Chethan Chandra S. Basavaraddi</strong><br>
+                    Email: <a href="mailto:chethanchandrasb.cse@gmu.ac.in">chethanchandrasb.cse@gmu.ac.in</a><br>
+                    Mobile: +91 98445 08359<br><br>
+                    <strong>Mr. Santoshkumar M</strong><br>
+                    Email: <a href="mailto:santoshkumarm@gmit.ac.in">santoshkumarm@gmit.ac.in</a><br>
+                    Mobile: +91 92421 63128
+                  </p>
                 </div>
                 <div class="objective-item">
-                  <h4 class="objective-title">Quality Documentation</h4>
-                  <p class="objective-description">Comprehensive documentation including updated syllabus, outcome analysis reports, and feedback reports from students, alumni, and industry partners to maintain academic standards.</p>
+                  <h4 class="objective-title">Mentorship Model</h4>
+                  <p class="objective-description">Each faculty member mentors students in a 1:30 ratio, ensuring personalized guidance, academic monitoring, and career support.</p>
                 </div>
                 <div class="objective-item">
-                  <h4 class="objective-title">Continuous Improvement Practices</h4>
-                  <p class="objective-description">Implementation of systematic continuous improvement practices based on feedback analysis, industry requirements, and evolving technological trends to enhance program effectiveness.</p>
+                  <h4 class="objective-title">ERP-Enabled Quality Assurance</h4>
+                  <p class="objective-description">The department leverages the University ERP system for data visualization, performance tracking, and evidence-based decision-making. Insights generated from ERP data support decisions at the mentor, coordinator, and HoD levels, enhancing transparency and accountability.</p>
+                </div>
+                <div class="objective-item">
+                  <h4 class="objective-title">OBE and Documentation</h4>
+                  <p class="objective-description">The IQAC coordinators maintain syllabus records, course outcome and program outcome mappings, feedback reports, placement statistics, and curriculum review data.</p>
+                </div>
+                <div class="objective-item">
+                  <h4 class="objective-title">Continuous Improvement</h4>
+                  <p class="objective-description">Regular benchmarking against peer institutions, stakeholder consultations, and academic audits ensure alignment with AICTE/UGC regulations and industry requirements.</p>
                 </div>
               </div>
             </div>
@@ -985,7 +1006,7 @@
 
           <!-- Board of Studies -->
           <div class="dropdown-item">
-            <div class="dropdown-header" onclick="toggleDropdown('bos-content')" role="button" aria-expanded="false" aria-controls="bos-content">
+            <div class="dropdown-header" role="button" aria-expanded="false" aria-controls="bos-content">
               <h3 class="dropdown-title">Board of Studies (BoS)</h3>
               <i class="fas fa-chevron-down dropdown-icon" id="bos-icon"></i>
             </div>
@@ -997,7 +1018,7 @@
                 </div>
                 <div class="objective-item">
                   <h4 class="objective-title">Academic Responsibilities</h4>
-                  <p class="objective-description">The BoS recommends new programs, proposes panels of examiners, and identifies standard learning resources for teaching and evaluation. Its recommendations are placed before the Board of Faculty and Academic Council for approval, as per the GMU Statutes.</p>
+                  <p class="objective-description">The BoS recommends new programs, proposes panels of examiners, and identifies standard learning resources for teaching and evaluation. Its recommendations are placed before the Board of Faculty and Academic Council for approval, as per the GMU Statutes (pp. 40–41).</p>
                 </div>
                 <div class="objective-item">
                   <h4 class="objective-title">Composition and Expertise</h4>
@@ -1078,7 +1099,7 @@
 
           <!-- Department Benchmarking -->
           <div class="dropdown-item">
-            <div class="dropdown-header" onclick="toggleDropdown('benchmarking-content')" role="button" aria-expanded="false" aria-controls="benchmarking-content">
+            <div class="dropdown-header" role="button" aria-expanded="false" aria-controls="benchmarking-content">
               <h3 class="dropdown-title">Department Benchmarking</h3>
               <i class="fas fa-chevron-down dropdown-icon" id="benchmarking-icon"></i>
             </div>
@@ -1113,6 +1134,30 @@
                 </div>
                 <div class="closing-statement">
                   <p>This multi-level benchmarking ensures that CSE graduates are not only industry-ready but also academically and globally competitive, capable of excelling in research, innovation, and entrepreneurship.</p>
+                </div>
+                <div class="benchmark-table">
+                  <h4 class="objective-title">Admission Requirements Table</h4>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>Requirement</th>
+                        <th>Cutoff/Eligibility</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Self-Sponsored</td>
+                        <td>PUC Percentage</td>
+                        <td>Minimum 85%</td>
+                      </tr>
+                      <tr>
+                        <td>Government Quota</td>
+                        <td>KCET Rank</td>
+                        <td>Below 50,000</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -1240,27 +1285,49 @@
     function toggleDropdown(contentId) {
       const content = document.getElementById(contentId);
       const icon = document.getElementById(contentId.replace('-content', '-icon'));
+      const header = document.querySelector(`[aria-controls="${contentId}"]`);
       const isActive = content.classList.contains('active');
 
+      // Close all dropdowns
       document.querySelectorAll('.dropdown-content').forEach(dropdown => {
         dropdown.classList.remove('active');
         dropdown.setAttribute('aria-hidden', 'true');
       });
-
       document.querySelectorAll('.dropdown-icon').forEach(iconEl => {
         iconEl.classList.remove('fa-chevron-up');
         iconEl.classList.add('fa-chevron-down');
       });
+      document.querySelectorAll('.dropdown-header').forEach(h => {
+        h.setAttribute('aria-expanded', 'false');
+      });
 
+      // Toggle the clicked dropdown
       if (!isActive) {
         content.classList.add('active');
         content.setAttribute('aria-hidden', 'false');
         icon.classList.remove('fa-chevron-down');
         icon.classList.add('fa-chevron-up');
+        header.setAttribute('aria-expanded', 'true');
       }
-
-      document.querySelector(`[aria-controls="${contentId}"]`).setAttribute('aria-expanded', !isActive);
     }
+
+    // Add click event listeners to dropdown headers
+    document.querySelectorAll('.dropdown-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const contentId = header.getAttribute('aria-controls');
+        toggleDropdown(contentId);
+      });
+
+      // Keyboard navigation support
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const contentId = header.getAttribute('aria-controls');
+          toggleDropdown(contentId);
+        }
+      });
+      header.setAttribute('tabindex', '0');
+    });
 
     // Scroll Reveal Animation
     function revealOnScroll() {
@@ -1337,7 +1404,7 @@
     // Handle Window Resize
     window.addEventListener('resize', revealOnScroll);
 
-    // Keyboard Navigation for Dropdowns
+    // Close dropdowns on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         document.querySelectorAll('.dropdown-content').forEach(dropdown => {
@@ -1352,16 +1419,6 @@
           header.setAttribute('aria-expanded', 'false');
         });
       }
-    });
-
-    document.querySelectorAll('.dropdown-header').forEach(header => {
-      header.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          header.click();
-        }
-      });
-      header.setAttribute('tabindex', '0');
     });
 
     // Footer: Social Icon Hover
