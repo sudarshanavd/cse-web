@@ -1028,8 +1028,280 @@
     </div>
   </section>
 
+ ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoD Message Section</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Plus+Jakarta+Sans:wght@400;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Root Variables */
+    :root {
+      --primary: #0f172a;
+      --text: #0b1220;
+      --text-light: #f8fafc;
+      --muted: #64748b;
+      --accent: #3b82f6;
+      --accent-2: #8b5cf6;
+      --bg: #f8fafc;
+      --shadow-2: 0 24px 50px rgba(0,0,0,.12);
+      --container: min(95vw, 1600px);
+      --section-bg: linear-gradient(135deg, #e3f2fd, #f8fbff);
+    }
+
+    /* General Styling */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; transition: transform 0.3s ease; }
+    .display-font { font-family: "Playfair Display", "Plus Jakarta Sans", serif; }
+
+    /* HOD Section Styling */
+    #hod {
+      padding: clamp(2rem, 4vw, 4rem) 1rem;
+      width: var(--container);
+      margin: 0 auto;
+      background: var(--section-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+    }
+    #hod-title {
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-family: "Playfair Display", serif;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    #hod-title .sub {
+      font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-family: "Inter", sans-serif;
+    }
+    .hod-card {
+      display: flex;
+      gap: clamp(1rem, 2vw, 2rem);
+      align-items: center;
+      background: linear-gradient(135deg, #ffffff, #f9fafb);
+      padding: clamp(1rem, 2vw, 2.5rem);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hod-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .hod-photo {
+      flex: 0 0 auto;
+      width: clamp(150px, 20vw, 250px);
+      height: clamp(150px, 20vw, 250px);
+      border-radius: 50%;
+      overflow: hidden;
+      background: #111827;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .hod-card:hover .hod-photo {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    .hod-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.4s ease;
+    }
+    .hod-card:hover .hod-photo img {
+      transform: scale(1.1);
+    }
+    .hod-content {
+      flex: 1;
+      font-family: "Inter", sans-serif;
+      color: #374151;
+    }
+    .hod-content h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+      font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+    }
+    .hod-content .title {
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hod-content blockquote {
+      font-size: clamp(0.9rem, 1.4vw, 1.15rem);
+      font-style: italic;
+      background: #f0f9ff;
+      border-left: 5px solid var(--accent);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      color: #1e293b;
+      animation: fadeIn 1.3s ease forwards;
+    }
+    .hod-content p {
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+      font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+      transition: opacity 0.4s ease;
+    }
+    .hod-content .sign {
+      font-weight: 600;
+      margin-top: 1.2rem;
+      color: var(--primary);
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+    }
+    .hod-content a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .hod-content a:hover {
+      color: var(--accent-2);
+      text-decoration: underline;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* HOD Message Expandable Section */
+    .hod-message {
+      position: relative;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
+    }
+    .hod-message-preview {
+      max-height: 150px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hod-message-preview::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+    .hod-message-full {
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+    .hod-message.expanded .hod-message-preview {
+      display: none;
+    }
+    .hod-message.expanded .hod-message-full {
+      max-height: 2000px;
+      opacity: 1;
+      display: block;
+    }
+    .read-more {
+      font-style: italic;
+      color: var(--accent);
+      margin-top: 0.5rem;
+      font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .read-more:hover {
+      color: var(--accent-2);
+      text-decoration: underline;
+    }
+    .drag-handle {
+      text-align: center;
+      padding: 1rem 0;
+      cursor: grab;
+      user-select: none;
+      position: relative;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+    .drag-icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .drag-handle:hover .drag-icon {
+      transform: scale(1.1);
+    }
+    .drag-handle.expanded .drag-icon {
+      transform: rotate(180deg);
+    }
+    @media (max-width: 768px) {
+      .drag-handle {
+        cursor: pointer;
+      }
+    }
+    @media (max-width: 980px) {
+      .hod-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+      .hod-photo {
+        width: clamp(150px, 35vw, 220px);
+        height: clamp(150px, 35vw, 220px);
+        margin: 0 auto;
+      }
+      .hod-content blockquote {
+        text-align: left;
+      }
+    }
+    @media (max-width: 480px) {
+      .hod-photo {
+        width: clamp(120px, 30vw, 180px);
+        height: clamp(120px, 30vw, 180px);
+      }
+      .hod-content h3 {
+        font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      }
+      .hod-content .title {
+        font-size: clamp(0.8rem, 1.2vw, 1rem);
+      }
+      .hod-content blockquote {
+        font-size: clamp(0.8rem, 1.2vw, 1rem);
+      }
+      .hod-content p {
+        font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+      }
+    }
+  </style>
+</head>
+<body>
   <!-- HOD MESSAGE SECTION -->
-  <section id="hod" class="section reveal" aria-labelledby="hod-title">
+  <section id="hod" aria-labelledby="hod-title">
     <h2 id="hod-title" class="display-font">
       Message from the Head of Department
       <span class="sub">Guidance & Vision</span>
@@ -1039,20 +1311,115 @@
         <img src="shivanagowda.jpg" alt="Dr. Shivanagowda G M, HoD of CSE" loading="lazy" />
       </figure>
       <div class="hod-content">
-        <h3>Dr. Shivanagowda G M</h3>
+        <h3>Dr. Shivanagowda G. M.</h3>
         <div class="title">Professor & Head, Department of Computer Science & Engineering</div>
         <blockquote>
           “At the heart of Computer Science lies the power of aptitude—the intellectual agility to learn, adapt, and innovate. In our rapidly changing world, this quality defines success.”
         </blockquote>
-        <p>Welcome to the Department of Computer Science & Engineering (CSE) at GM University, Davanagere. Our department is committed to nurturing talent, fostering innovation, and preparing students to excel in the rapidly evolving field of technology.</p>
-        <p>In today’s digital era, Computer Science drives transformation across every sector—from Artificial Intelligence and Data Science to Cloud Computing, Cybersecurity, and the Internet of Things (IoT). At GMU, we ensure our students gain strong theoretical foundations along with hands-on experience through modern laboratories, real-world projects, and industry collaborations.</p>
-        <p>Our distinguished faculty are actively engaged in teaching, research, and consultancy, offering mentorship that bridges academia and industry. They are committed to instilling deep learning, analytical thinking, and adaptability—skills that empower our students to excel in competitive examinations such as GATE and GRE, and to make impactful contributions to the global academic and technology communities.</p>
-        <p>Beyond coursework, we nurture students’ innate capabilities by encouraging them to engage in research, innovation challenges, and entrepreneurship. Our learners actively participate in prestigious platforms such as the Smart India Hackathon (SIH), ACM Student Symposiums, ICPC, Google Summer of Code, and Microsoft Imagine Cup.</p>
-        <p>To sharpen their aptitude, they are trained on competitive coding platforms like LeetCode, Kattis, HackerRank, and Codeforces, building strong analytical and problem-solving skills. Students also collaborate with faculty in preparing research proposals for ISRO, DRDO, DST, and international agencies such as NASA.</p>
-        <p class="sign">– Dr. Shivanagowda G M<br>Professor & Head of Department</p>
+        <div class="hod-message">
+          <div class="hod-message-preview">
+            <p>Welcome to the Department of Computer Science & Engineering (CSE) at GM University, Davanagere. Dr. Shivanagowda G. M., with nearly two decades of experience, leads our department in fostering innovation, research, and industry-relevant education.</p>
+            <p class="read-more" aria-label="Click to read full HoD message">Drag or click to read the full message...</p>
+          </div>
+          <div class="hod-message-full">
+            <p>Welcome to the Department of Computer Science & Engineering (CSE) at GM University, Davanagere. I am Dr. Shivanagowda G. M., and it is my privilege to lead this dynamic department since joining GMU on October 18, 2023, bringing nearly two decades of academic, research, and administrative experience from SDM College of Engineering & Technology (SDMCET), Dharwad.</p>
+            <p>Our department is dedicated to nurturing talent and preparing students to excel in the rapidly evolving field of technology. In today’s digital era, Computer Science drives transformation across every sector—from Artificial Intelligence, Data Science, and Cloud Computing to Cybersecurity and the Internet of Things (IoT). At GMU, we ensure our students gain strong theoretical foundations complemented by hands-on experience through modern laboratories, real-world projects, and industry collaborations.</p>
+            <p>Our distinguished faculty are actively engaged in teaching, research, and consultancy, offering mentorship that bridges academia and industry. They instill deep learning, analytical thinking, and adaptability—skills that empower our students to excel in competitive examinations like GATE and GRE and make impactful contributions to global academic and technology communities.</p>
+            <p>Beyond coursework, we encourage students to engage in research, innovation challenges, and entrepreneurship. Our learners actively participate in prestigious platforms such as the Smart India Hackathon (SIH), ACM Student Symposiums, ICPC, Google Summer of Code, and Microsoft Imagine Cup. To sharpen their aptitude, they are trained on competitive coding platforms like LeetCode, Kattis, HackerRank, and Codeforces, building strong analytical and problem-solving skills. Students also collaborate with faculty in preparing research proposals for ISRO, DRDO, DST, and international agencies like NASA.</p>
+            <p>My academic journey includes a Ph.D. in Computer Science and Engineering from Visvesvaraya Technological University (VTU), Belagavi, awarded in 2019 for research in Personalized Learning Systems. Prior to this, I completed coursework at IIT Delhi (2009-2010), laying a strong foundation for my research. I also hold an M.Tech. in Computer Science and Engineering from VTU. My research interests span Personalized Learning Systems, Human-Computer Interaction, Automated Software Engineering, and Engineering Education, resulting in numerous publications, a patent on Learning and Mentoring Systems, and a funded project from VTU’s Competitive Research Grant scheme.</p>
+            <p>At GMU, I serve as the Associate Director of ERP, leading the development of in-house enterprise systems to streamline academic and administrative processes, including student registration, course cataloguing, and real-time applications like the Proctor Quiz Android app (<a href="https://play.google.com/store/apps/details?id=com.university.gmu.gmu&pcampaignid=web_share" target="_blank">Google Play</a>). As the Scholarship Nodal Officer, I ensure transparency and efficiency in facilitating student financial support from government and NGOs (<a href="https://gmu.ac.in/scholorships" target="_blank">Scholarship Portal</a>). Additionally, as Editor of GMU Times, I oversee the university’s quarterly magazine, celebrating our academic, cultural, and research activities (<a href="https://gmu.ac.in/quarterly_magazine" target="_blank">GMU Times</a>).</p>
+            <p>My teaching philosophy centers on personalized and joyful learning, allowing each student to excel at their own pace and style. Having taught 45 courses (27 distinct) across undergraduate and postgraduate programs, I emphasize innovative pedagogical methods like the Open Assessment Methodology (OAM), CAMP model question papers, and industry-integrated projects to ensure meaningful learning outcomes for diverse learners.</p>
+            <p>I am honored to be recognized by the ACM and IEEE Computer Society’s CC2020 Task Force as one of 540 global contributors—and the second Indian—to the Paradigms for Global Computing Education report (<a href="https://www.acm.org/binaries/content/assets/education/curricula-recommendations/cc2020.pdf" target="_blank">CC2020 Report</a>, page 192). As a Senior Professional Member of ACM since 2013 (<a href="https://awards.acm.org/award-recipients/gm_1727259" target="_blank">ACM Profile</a>), I remain committed to advancing computing education and fostering a culture of creativity, exploration, and holistic growth in our classrooms.</p>
+            <p>Our mission is to transform classrooms into spaces where students are prepared for future challenges in technology and beyond. I invite you to join us in this journey of innovation and excellence.</p>
+            <p class="sign">– Dr. Shivanagowda G. M.<br>Professor & Head of Department</p>
+            <p><a href="https://www.linkedin.com/in/shivanagowda-g-m-0b54605/" target="_blank">LinkedIn Profile</a> | <a href="https://vidwan.inflibnet.ac.in/profile/259362" target="_blank">Vidwan Profile</a> | <a href="#" target="_blank">History of Teaching Practices</a></p>
+          </div>
+        </div>
+        <div class="drag-handle" aria-label="Drag or click to toggle HoD message">
+          <span class="drag-icon"><i class="fas fa-grip-lines"></i></span>
+        </div>
       </div>
     </div>
   </section>
+
+  <script>
+    // HOD Message Toggle and Drag Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const hodMessage = document.querySelector('.hod-message');
+      const readMore = document.querySelector('.read-more');
+      const dragHandle = document.querySelector('.drag-handle');
+
+      let isDragging = false;
+      let startY;
+      let startHeight;
+
+      function toggleMessage() {
+        hodMessage.classList.toggle('expanded');
+        const isExpanded = hodMessage.classList.contains('expanded');
+        readMore.textContent = isExpanded ? 'Collapse message...' : 'Drag or click to read the full message...';
+        readMore.setAttribute('aria-label', isExpanded ? 'Click to collapse HoD message' : 'Click to read full HoD message');
+        dragHandle.setAttribute('aria-label', isExpanded ? 'Drag or click to collapse HoD message' : 'Drag or click to read full HoD message');
+        dragHandle.classList.toggle('expanded', isExpanded);
+        // Smooth scroll to ensure content is visible
+        if (isExpanded) {
+          hodMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+
+      // Click to toggle on read-more text
+      if (readMore) {
+        readMore.addEventListener('click', (e) => {
+          e.preventDefault();
+          toggleMessage();
+        });
+      }
+
+      // Click and drag functionality for drag-handle
+      if (dragHandle) {
+        // Click to toggle
+        dragHandle.addEventListener('click', (e) => {
+          e.preventDefault();
+          toggleMessage();
+        });
+
+        // Drag functionality for desktop
+        dragHandle.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          startY = e.clientY;
+          startHeight = hodMessage.offsetHeight;
+          document.body.style.userSelect = 'none';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          const deltaY = e.clientY - startY;
+          const newHeight = startHeight + deltaY;
+          if (newHeight > 150) {
+            hodMessage.classList.add('expanded');
+          } else {
+            hodMessage.classList.remove('expanded');
+          }
+          const isExpanded = hodMessage.classList.contains('expanded');
+          readMore.textContent = isExpanded ? 'Collapse message...' : 'Drag or click to read the full message...';
+          readMore.setAttribute('aria-label', isExpanded ? 'Click to collapse HoD message' : 'Click to read full HoD message');
+          dragHandle.setAttribute('aria-label', isExpanded ? 'Drag or click to collapse HoD message' : 'Drag or click to read full HoD message');
+          dragHandle.classList.toggle('expanded', isExpanded);
+        });
+
+        document.addEventListener('mouseup', () => {
+          if (isDragging) {
+            isDragging = false;
+            document.body.style.userSelect = '';
+          }
+        });
+
+        // Prevent text selection during drag
+        dragHandle.addEventListener('dragstart', (e) => e.preventDefault());
+      }
+    });
+  </script>
+</body>
+</html>
 
   <!-- NEWS & UPDATES -->
   <section id="news" class="section reveal" aria-labelledby="news-title">
