@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footer - GMU CSE</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --primary: #0f172a;
+      --primary-2: #111827;
+      --text-light: #f8fafc;
+      --accent: #3b82f6;
+      --accent-2: #8b5cf6;
+      --footer-container: min(90vw, 1000px);
+    }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6; overflow-x: hidden;
+    }
+    footer {
+      background: linear-gradient(180deg, var(--primary-2) 0%, var(--primary) 100%);
+      color: var(--text-light);
+      padding: clamp(1.5rem, 3vw, 3rem) 0; /* Reduced padding */
+      position: relative;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+    }
+    .footer-inner {
+      width: var(--footer-container);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: clamp(0.8rem, 1.5vw, 1.5rem);
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: clamp(0.8rem, 1.5vw, 1.5rem);
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+    .fcol {
+      padding: 0.6rem;
+      transition: transform 0.3s ease;
+    }
+    .fcol:hover {
+      transform: translateY(-5px);
+    }
+    .fcol h4 {
+      margin: 0 0 0.6rem;
+      color: var(--accent);
+      font-size: clamp(0.9rem, 1.2vw, 1.3rem);
+      font-weight: 800;
+      font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+      position: relative;
+      padding-bottom: 0.4rem;
+    }
+    .fcol p, .fcol a {
+      font-size: clamp(0.75rem, 0.9vw, 0.95rem);
+      color: rgba(248,250,252,0.9);
+      text-decoration: none;
+      margin: 0.4rem 0;
+      display: block;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .fcol a:hover {
+      color: var(--accent-2);
+      transform: translateX(5px);
+    }
+    .social-links {
+      display: flex;
+      gap: 0.8rem;
+      margin: 0.6rem 0;
+      flex-wrap: wrap;
+    }
+    .social-links a {
+      color: var(--text-light);
+      font-size: clamp(1rem, 1.4vw, 1.4rem);
+      transition: color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+    }
+    .social-links a:hover {
+      color: var(--accent-2);
+      transform: scale(1.2);
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .footer-bottom {
+      text-align: center;
+      font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+      color: rgba(255,255,255,0.7);
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      position: relative;
+    }
+    .footer-bottom::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top center, rgba(59,130,246,0.15) 0%, transparent 70%);
+      opacity: 0.6;
+      z-index: -1;
+    }
+    @media (max-width: 980px) {
+      .footer-grid, .contact-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+    @media (max-width: 680px) {
+      .footer-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+      }
+      .fcol a:hover {
+        transform: none;
+      }
+      .social-links {
+        justify-content: center;
+      }
+    }
+    @media (max-width: 480px) {
+      .footer-inner {
+        padding: 0 0.5rem;
+      }
+      .fcol h4 {
+        font-size: clamp(0.85rem, 1.1vw, 1.1rem);
+      }
+      .fcol p, .fcol a {
+        font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+      }
+      .social-links a {
+        width: 28px;
+        height: 28px;
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Social Icon CSS */
+    .social-icon {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: scale(1.2);
+      color: #93c5fd;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Footer -->
+<footer class="footer" aria-label="Footer navigation and contact information">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="fcol">
+        <h4>Information For</h4>
+        <p><a href="#" aria-label="Information for prospective students">Prospective Students</a></p>
+        <p><a href="#" aria-label="Information for current students">Current Students</a></p>
+        <p><a href="#" aria-label="Information for alumni">Alumni</a></p>
+      </div>
+      <div class="fcol">
+        <h4>Information About</h4>
+        <p><a href="#" aria-label="About GM University">About GM University</a></p>
+        <p><a href="#" aria-label="Academic programs">Academic Programs</a></p>
+        <p><a href="#" aria-label="Research at GM University">Research</a></p>
+      </div>
+      <div class="fcol">
+        <h4>Important Info</h4>
+        <p><a href="#" aria-label="Admissions information">Admissions</a></p>
+        <p><a href="#" aria-label="Career opportunities">Careers</a></p>
+        <p><a href="#" aria-label="Campus life">Campus Life</a></p>
+      </div>
+      <div class="fcol">
+        <h4>Placements & Internships</h4>
+        <p><a href="placements.html" aria-label="Placement overview">Placement Overview</a></p>
+        <p><a href="placements.html" aria-label="Star students">Star Students</a></p>
+        <p><a href="placements.html" aria-label="Top recruiters">Top Recruiters</a></p>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="fcol">
+        <h4>Address & Contact Info</h4>
+        <p>GM University, Davangere, Karnataka, India</p>
+        <p>Email: <a href="mailto:info@gmu.edu" aria-label="Email GM University">info@gmu.edu</a></p>
+        <p>Phone: <a href="tel:+911234567890" aria-label="Call GM University">+91-123-456-7890</a></p>
+      </div>
+      <div class="fcol">
+        <h4>Connect With Us</h4>
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Visit our Twitter page"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Visit our Instagram page"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" target="_blank" class="social-icon" aria-label="Visit our YouTube page"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p><a href="https://www.google.com/maps/place/Davanagere,+Karnataka" target="_blank" class="flex items-center gap-2 hover:text-blue-200" aria-label="Find us on Google Maps"><i class="fa-solid fa-location-dot"></i> Find us on Google Maps</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 GM University. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Footer: Social icon hover
+  document.querySelectorAll('.social-icon').forEach(icon => {
+    icon.addEventListener('mouseover', () => {
+      icon.style.color = '#60a5fa';
+    });
+    icon.addEventListener('mouseout', () => {
+      icon.style.color = '';
+    });
+  });
+</script>
+
+</body>
+</html>
