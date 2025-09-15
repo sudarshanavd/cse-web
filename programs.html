@@ -449,56 +449,23 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Box Layout for Program Details */
-    .program-box-section {
-      display: grid;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .program-box-section h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-      font-family: "Plus Jakarta Sans", sans-serif;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
+    /* Collapsible Program Boxes */
     .program-box {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
-      backdrop-filter: blur(20px);
+      background: var(--bg);
       border: 2px solid transparent;
-      border-image: linear-gradient(90deg, var(--accent), var(--purple)) 1;
+      border-image: linear-gradient(90deg, var(--accent), var(--purple), var(--accent)) 1;
       border-image-slice: 1;
+      background-size: 200% 100%;
+      animation: borderShimmer 4s ease-in-out infinite;
       border-radius: var(--border-radius);
       padding: 1.5rem;
-      position: relative;
       box-shadow: var(--shadow-lg);
       transition: var(--transition);
     }
 
-    .program-box::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      border-radius: var(--border-radius);
-      background: linear-gradient(90deg, var(--accent), var(--purple), var(--accent));
-      background-size: 200% 100%;
-      animation: borderShimmer 4s ease-in-out infinite;
-      z-index: -1;
-      opacity: 0.5;
-    }
-
     @keyframes borderShimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
+      0% { border-image-source: linear-gradient(90deg, var(--accent), var(--purple), var(--accent)); background-position: -200% 0; }
+      100% { border-image-source: linear-gradient(90deg, var(--accent), var(--purple), var(--accent)); background-position: 200% 0; }
     }
 
     .program-box:hover {
@@ -507,7 +474,39 @@
       border-image: linear-gradient(90deg, var(--accent-light), var(--purple-light)) 1;
     }
 
-    .program-box h4 {
+    .program-box h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .program-box .summary {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .program-box .details {
+      display: none;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .program-box .details.active {
+      display: block;
+    }
+
+    .program-box .detail-item {
+      margin-bottom: 1rem;
+    }
+
+    .program-box .detail-item h4 {
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--accent);
@@ -515,16 +514,28 @@
       font-family: "Plus Jakarta Sans", sans-serif;
     }
 
-    .program-box p {
+    .view-more-btn {
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      color: var(--text-light);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 50px;
       font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin: 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .view-more-btn:hover {
+      background: linear-gradient(90deg, var(--accent-light), var(--purple-light));
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
 
     /* Footer */
     footer {
-      background: linear-gradient(180deg, var(--primary-2) 0%, var(--primary) 100%);
+      background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
       color: var(--text-light);
       padding: 2rem 0;
       position: relative;
@@ -747,14 +758,6 @@
       .program-box {
         padding: 1rem;
       }
-
-      .program-box h4 {
-        font-size: 1rem;
-      }
-
-      .program-box p {
-        font-size: 0.9rem;
-      }
     }
 
     @media (max-width: 480px) {
@@ -811,14 +814,6 @@
 
       .program-box {
         padding: 0.8rem;
-      }
-
-      .program-box h4 {
-        font-size: 0.95rem;
-      }
-
-      .program-box p {
-        font-size: 0.85rem;
       }
     }
 
@@ -915,343 +910,167 @@
           </div>
         </div>
 
-        <!-- Program Educational Objectives Boxes -->
-        <div class="program-box-section scroll-reveal">
+        <!-- Program Educational Objectives Card -->
+        <div class="program-box scroll-reveal">
           <h3>Program Educational Objectives (PEOs)</h3>
-          <div class="program-box">
-            <h4>PEO-1: Knowledge and Technical Skills</h4>
-            <p>Graduates will have a strong foundation in computer science and engineering principles, including algorithms, data structures, artificial intelligence, and machine learning. They will be able to analyze, design, implement, and optimize software systems and intelligent solutions to address real-world challenges in diverse sectors such as software development, IT, and emerging technologies.</p>
+          <div class="summary">
+            <p>Our PEOs aim to equip graduates with strong technical skills, professional competence, and adaptability to excel in diverse tech careers.</p>
           </div>
-          <div class="program-box">
-            <h4>PEO-2: Professional Competence and Leadership</h4>
-            <p>Graduates will possess technical competencies, practical skills, and leadership abilities enabling them to excel in roles within technology companies, software industries, R&D, and entrepreneurial ventures. They will be capable of assuming both technical and leadership positions, contributing to technological advancements and innovation.</p>
+          <div class="details" id="peo-details">
+            <div class="detail-item">
+              <h4>PEO-1: Knowledge and Technical Skills</h4>
+              <p>Graduates will have a strong foundation in computer science and engineering principles, including algorithms, data structures, artificial intelligence, and machine learning. They will be able to analyze, design, implement, and optimize software systems and intelligent solutions to address real-world challenges in diverse sectors such as software development, IT, and emerging technologies.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PEO-2: Professional Competence and Leadership</h4>
+              <p>Graduates will possess technical competencies, practical skills, and leadership abilities enabling them to excel in roles within technology companies, software industries, R&D, and entrepreneurial ventures. They will be capable of assuming both technical and leadership positions, contributing to technological advancements and innovation.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PEO-3: Holistic Development and Adaptability</h4>
+              <p>Graduates will demonstrate critical thinking, creativity, innovation, collaboration, effective communication, adaptability, leadership, responsibility, and cross-cultural interaction skills. They will adapt to evolving professional environments, pursue diverse career trajectories, and engage in lifelong learning while contributing effectively to their fields and society.</p>
+            </div>
           </div>
-          <div class="program-box">
-            <h4>PEO-3: Holistic Development and Adaptability</h4>
-            <p>Graduates will demonstrate critical thinking, creativity, innovation, collaboration, effective communication, adaptability, leadership, responsibility, and cross-cultural interaction skills. They will adapt to evolving professional environments, pursue diverse career trajectories, and engage in lifelong learning while contributing effectively to their fields and society.</p>
-          </div>
+          <button class="view-more-btn" data-target="peo-details">View More</button>
         </div>
 
-        <!-- Program Outcomes Boxes -->
-        <div class="program-box-section scroll-reveal">
+        <!-- Program Outcomes Card -->
+        <div class="program-box scroll-reveal">
           <h3>Program Outcomes (POs) – Graduate Attributes</h3>
-          <div class="program-box">
-            <h4>PO-1: Engineering knowledge</h4>
-            <p>Apply knowledge of mathematics, science, engineering fundamentals, and specialization to solve complex engineering problems.</p>
+          <div class="summary">
+            <p>POs ensure graduates can apply engineering knowledge, solve complex problems, and contribute ethically and sustainably to society.</p>
           </div>
-          <div class="program-box">
-            <h4>PO-2: Problem analysis</h4>
-            <p>Identify, formulate, review literature, and analyze complex engineering problems using principles of mathematics, natural sciences, and engineering sciences.</p>
+          <div class="details" id="po-details">
+            <div class="detail-item">
+              <h4>PO-1: Engineering knowledge</h4>
+              <p>Apply knowledge of mathematics, science, engineering fundamentals, and specialization to solve complex engineering problems.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-2: Problem analysis</h4>
+              <p>Identify, formulate, review literature, and analyze complex engineering problems using principles of mathematics, natural sciences, and engineering sciences.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-3: Design/development of solutions</h4>
+              <p>Design solutions for complex problems and develop system components/processes that meet specified needs considering health, safety, cultural, societal, and environmental factors.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-4: Conduct investigations of complex problems</h4>
+              <p>Use research-based knowledge, experiments, analysis, and interpretation of data to provide valid conclusions.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-5: Modern tool usage</h4>
+              <p>Create, select, and apply modern engineering and IT tools, prediction, and modeling to complex engineering tasks with understanding of their limitations.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-6: The engineer and society</h4>
+              <p>Apply contextual knowledge to assess societal, health, safety, legal, and cultural issues relevant to engineering practice.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-7: Environment and sustainability</h4>
+              <p>Understand the impact of engineering solutions in societal/environmental contexts and recognize the need for sustainable development.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-8: Ethics</h4>
+              <p>Apply ethical principles and commit to professional ethics, responsibilities, and engineering norms.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-9: Individual and team work</h4>
+              <p>Function effectively as an individual, and as a member/leader in diverse and multidisciplinary teams.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-10: Communication</h4>
+              <p>Communicate effectively on complex engineering activities, including reports, documentation, presentations, and clear instructions.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-11: Project management and finance</h4>
+              <p>Demonstrate knowledge of engineering and management principles and apply them to manage projects in multidisciplinary environments.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PO-12: Lifelong learning</h4>
+              <p>Recognize the need for and engage in independent and lifelong learning in the context of technological change.</p>
+            </div>
           </div>
-          <div class="program-box">
-            <h4>PO-3: Design/development of solutions</h4>
-            <p>Design solutions for complex problems and develop system components/processes that meet specified needs considering health, safety, cultural, societal, and environmental factors.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-4: Conduct investigations of complex problems</h4>
-            <p>Use research-based knowledge, experiments, analysis, and interpretation of data to provide valid conclusions.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-5: Modern tool usage</h4>
-            <p>Create, select, and apply modern engineering and IT tools, prediction, and modeling to complex engineering tasks with understanding of their limitations.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-6: The engineer and society</h4>
-            <p>Apply contextual knowledge to assess societal, health, safety, legal, and cultural issues relevant to engineering practice.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-7: Environment and sustainability</h4>
-            <p>Understand the impact of engineering solutions in societal/environmental contexts and recognize the need for sustainable development.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-8: Ethics</h4>
-            <p>Apply ethical principles and commit to professional ethics, responsibilities, and engineering norms.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-9: Individual and team work</h4>
-            <p>Function effectively as an individual, and as a member/leader in diverse and multidisciplinary teams.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-10: Communication</h4>
-            <p>Communicate effectively on complex engineering activities, including reports, documentation, presentations, and clear instructions.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-11: Project management and finance</h4>
-            <p>Demonstrate knowledge of engineering and management principles and apply them to manage projects in multidisciplinary environments.</p>
-          </div>
-          <div class="program-box">
-            <h4>PO-12: Lifelong learning</h4>
-            <p>Recognize the need for and engage in independent and lifelong learning in the context of technological change.</p>
-          </div>
+          <button class="view-more-btn" data-target="po-details">View More</button>
         </div>
 
-        <!-- Program Specific Outcomes Boxes -->
-        <div class="program-box-section scroll-reveal">
+        <!-- Program Specific Outcomes Card -->
+        <div class="program-box scroll-reveal">
           <h3>Program Specific Outcomes (PSOs)</h3>
-          <div class="program-box">
-            <h4>PSO-1: Analyze and Address Computational Challenges</h4>
-            <p>Graduates can analyze complex computational requirements, identify challenges, and deliver innovative solutions in software development, algorithm design, and computational applications.</p>
+          <div class="summary">
+            <p>PSOs focus on enabling graduates to address computational challenges, develop software systems, and lead innovative projects.</p>
           </div>
-          <div class="program-box">
-            <h4>PSO-2: Apply Computer Science Concepts in System Development</h4>
-            <p>Graduates can envision, design, implement, and test software systems using knowledge of algorithms, data structures, and software development methodologies to create efficient, reliable, and innovative applications.</p>
+          <div class="details" id="pso-details">
+            <div class="detail-item">
+              <h4>PSO-1: Analyze and Address Computational Challenges</h4>
+              <p>Graduates can analyze complex computational requirements, identify challenges, and deliver innovative solutions in software development, algorithm design, and computational applications.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PSO-2: Apply Computer Science Concepts in System Development</h4>
+              <p>Graduates can envision, design, implement, and test software systems using knowledge of algorithms, data structures, and software development methodologies to create efficient, reliable, and innovative applications.</p>
+            </div>
+            <div class="detail-item">
+              <h4>PSO-3: Conduct and Lead Experimental Validation in CSE</h4>
+              <p>Graduates can plan and conduct experiments for validating and verifying computational solutions, using lab techniques and software tools, and can lead research projects by managing teams and resources effectively.</p>
+            </div>
           </div>
-          <div class="program-box">
-            <h4>PSO-3: Conduct and Lead Experimental Validation in CSE</h4>
-            <p>Graduates can plan and conduct experiments for validating and verifying computational solutions, using lab techniques and software tools, and can lead research projects by managing teams and resources effectively.</p>
-          </div>
+          <button class="view-more-btn" data-target="pso-details">View More</button>
         </div>
       </div>
     </div>
   </section>
 
- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Footer - GMU CSE</title>
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    :root {
-      --primary: #0f172a;
-      --primary-2: #111827;
-      --text-light: #f8fafc;
-      --accent: #3b82f6;
-      --accent-2: #8b5cf6;
-      --footer-container: min(90vw, 1000px);
-    }
-    body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6; overflow-x: hidden;
-    }
-    footer {
-      background: linear-gradient(180deg, var(--primary-2) 0%, var(--primary) 100%);
-      color: var(--text-light);
-      padding: clamp(1.5rem, 3vw, 3rem) 0; /* Reduced padding */
-      position: relative;
-      overflow: hidden;
-      font-family: "Inter", sans-serif;
-    }
-    .footer-inner {
-      width: var(--footer-container);
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: clamp(0.8rem, 1.5vw, 1.5rem);
-      align-items: start;
-      margin-bottom: 1rem;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: clamp(0.8rem, 1.5vw, 1.5rem);
-      align-items: start;
-      margin-bottom: 1rem;
-    }
-    .fcol {
-      padding: 0.6rem;
-      transition: transform 0.3s ease;
-    }
-    .fcol:hover {
-      transform: translateY(-5px);
-    }
-    .fcol h4 {
-      margin: 0 0 0.6rem;
-      color: var(--accent);
-      font-size: clamp(0.9rem, 1.2vw, 1.3rem);
-      font-weight: 800;
-      font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
-      position: relative;
-      padding-bottom: 0.4rem;
-    }
-    .fcol p, .fcol a {
-      font-size: clamp(0.75rem, 0.9vw, 0.95rem);
-      color: rgba(248,250,252,0.9);
-      text-decoration: none;
-      margin: 0.4rem 0;
-      display: block;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .fcol a:hover {
-      color: var(--accent-2);
-      transform: translateX(5px);
-    }
-    .social-links {
-      display: flex;
-      gap: 0.8rem;
-      margin: 0.6rem 0;
-      flex-wrap: wrap;
-    }
-    .social-links a {
-      color: var(--text-light);
-      font-size: clamp(1rem, 1.4vw, 1.4rem);
-      transition: color 0.3s ease, transform 0.3s ease;
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-    }
-    .social-links a:hover {
-      color: var(--accent-2);
-      transform: scale(1.2);
-      background: rgba(255,255,255,0.2);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .footer-bottom {
-      text-align: center;
-      font-size: clamp(0.75rem, 0.9vw, 0.9rem);
-      color: rgba(255,255,255,0.7);
-      margin-top: 1rem;
-      padding-top: 0.8rem;
-      border-top: 1px solid rgba(255,255,255,0.15);
-      position: relative;
-    }
-    .footer-bottom::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      border-radius: 999px;
-    }
-    footer::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top center, rgba(59,130,246,0.15) 0%, transparent 70%);
-      opacity: 0.6;
-      z-index: -1;
-    }
-    @media (max-width: 980px) {
-      .footer-grid, .contact-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      }
-    }
-    @media (max-width: 680px) {
-      .footer-grid, .contact-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1rem;
-      }
-      .fcol a:hover {
-        transform: none;
-      }
-      .social-links {
-        justify-content: center;
-      }
-    }
-    @media (max-width: 480px) {
-      .footer-inner {
-        padding: 0 0.5rem;
-      }
-      .fcol h4 {
-        font-size: clamp(0.85rem, 1.1vw, 1.1rem);
-      }
-      .fcol p, .fcol a {
-        font-size: clamp(0.7rem, 0.8vw, 0.85rem);
-      }
-      .social-links a {
-        width: 28px;
-        height: 28px;
-        font-size: 1.1rem;
-      }
-    }
-
-    /* Social Icon CSS */
-    .social-icon {
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-    .social-icon:hover {
-      transform: scale(1.2);
-      color: #93c5fd;
-    }
-  </style>
-</head>
-<body>
-
-<!-- Footer -->
-<footer class="footer" aria-label="Footer navigation and contact information">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="fcol">
-        <h4>Information For</h4>
-        <p><a href="#" aria-label="Information for prospective students">Prospective Students</a></p>
-        <p><a href="#" aria-label="Information for current students">Current Students</a></p>
-        <p><a href="#" aria-label="Information for alumni">Alumni</a></p>
-      </div>
-      <div class="fcol">
-        <h4>Information About</h4>
-        <p><a href="#" aria-label="About GM University">About GM University</a></p>
-        <p><a href="#" aria-label="Academic programs">Academic Programs</a></p>
-        <p><a href="#" aria-label="Research at GM University">Research</a></p>
-      </div>
-      <div class="fcol">
-        <h4>Important Info</h4>
-        <p><a href="#" aria-label="Admissions information">Admissions</a></p>
-        <p><a href="#" aria-label="Career opportunities">Careers</a></p>
-        <p><a href="#" aria-label="Campus life">Campus Life</a></p>
-      </div>
-      <div class="fcol">
-        <h4>Placements & Internships</h4>
-        <p><a href="placements.html" aria-label="Placement overview">Placement Overview</a></p>
-        <p><a href="placements.html" aria-label="Star students">Star Students</a></p>
-        <p><a href="placements.html" aria-label="Top recruiters">Top Recruiters</a></p>
-      </div>
-    </div>
-    <div class="contact-grid">
-      <div class="fcol">
-        <h4>Address & Contact Info</h4>
-        <p>GM University, Davangere, Karnataka, India</p>
-        <p>Email: <a href="mailto:info@gmu.edu" aria-label="Email GM University">info@gmu.edu</a></p>
-        <p>Phone: <a href="tel:+911234567890" aria-label="Call GM University">+91-123-456-7890</a></p>
-      </div>
-      <div class="fcol">
-        <h4>Connect With Us</h4>
-        <div class="social-links">
-          <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Visit our Twitter page"><i class="fab fa-twitter"></i></a>
-          <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Visit our Instagram page"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com" target="_blank" class="social-icon" aria-label="Visit our YouTube page"><i class="fab fa-youtube"></i></a>
+  <!-- Footer -->
+  <footer class="footer" aria-label="Footer navigation and contact information">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="fcol">
+          <h4>Information For</h4>
+          <p><a href="#" aria-label="Information for prospective students">Prospective Students</a></p>
+          <p><a href="#" aria-label="Information for current students">Current Students</a></p>
+          <p><a href="#" aria-label="Information for alumni">Alumni</a></p>
         </div>
-        <p><a href="https://www.google.com/maps/place/Davanagere,+Karnataka" target="_blank" class="flex items-center gap-2 hover:text-blue-200" aria-label="Find us on Google Maps"><i class="fa-solid fa-location-dot"></i> Find us on Google Maps</a></p>
+        <div class="fcol">
+          <h4>Information About</h4>
+          <p><a href="#" aria-label="About GM University">About GM University</a></p>
+          <p><a href="#" aria-label="Academic programs">Academic Programs</a></p>
+          <p><a href="#" aria-label="Research at GM University">Research</a></p>
+        </div>
+        <div class="fcol">
+          <h4>Important Info</h4>
+          <p><a href="#" aria-label="Admissions information">Admissions</a></p>
+          <p><a href="#" aria-label="Career opportunities">Careers</a></p>
+          <p><a href="#" aria-label="Campus life">Campus Life</a></p>
+        </div>
+        <div class="fcol">
+          <h4>Placements & Internships</h4>
+          <p><a href="placements.html" aria-label="Placement overview">Placement Overview</a></p>
+          <p><a href="placements.html" aria-label="Star students">Star Students</a></p>
+          <p><a href="placements.html" aria-label="Top recruiters">Top Recruiters</a></p>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="fcol">
+          <h4>Address & Contact Info</h4>
+          <p>GM University, Davangere, Karnataka, India</p>
+          <p>Email: <a href="mailto:info@gmu.edu" aria-label="Email GM University">info@gmu.edu</a></p>
+          <p>Phone: <a href="tel:+911234567890" aria-label="Call GM University">+91-123-456-7890</a></p>
+        </div>
+        <div class="fcol">
+          <h4>Connect With Us</h4>
+          <div class="social-links">
+            <a href="https://facebook.com" target="_blank" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Visit our Twitter page"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Visit our Instagram page"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com" target="_blank" aria-label="Visit our YouTube page"><i class="fab fa-youtube"></i></a>
+          </div>
+          <p><a href="https://www.google.com/maps/place/Davanagere,+Karnataka" target="_blank" class="flex items-center gap-2 hover:text-blue-200" aria-label="Find us on Google Maps"><i class="fa-solid fa-location-dot"></i> Find us on Google Maps</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 GM University. All rights reserved.</p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 GM University. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Footer: Social icon hover
-  document.querySelectorAll('.social-icon').forEach(icon => {
-    icon.addEventListener('mouseover', () => {
-      icon.style.color = '#60a5fa';
-    });
-    icon.addEventListener('mouseout', () => {
-      icon.style.color = '';
-    });
-  });
-</script>
-
-</body>
-</html>
+  </footer>
 
   <script>
     // Navbar: Mobile toggle + scroll state + active link
@@ -1271,45 +1090,16 @@
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         navbar.classList.toggle('scrolled', window.scrollY > 60);
-        highlightOnScroll();
       }, 50);
     });
 
-    function setActiveLink(element) {
-      document.querySelectorAll('.nav-links a, .nav-links .dropdown-btn').forEach(a => a.classList.remove('active'));
-      element.classList.add('active');
-      if (element.closest('.dropdown')) {
-        element.closest('.dropdown').querySelector('.dropdown-btn').classList.add('active');
-      }
-    }
-
-    function highlightOnScroll() {
-      const sections = ['hero', 'programs'];
-      const fromTop = window.scrollY + 100;
-      let current = null;
-      for (const id of sections) {
-        const section = document.getElementById(id);
-        if (section && section.offsetTop <= fromTop) current = id;
-      }
-      if (current) {
-        document.querySelectorAll('.nav-links a, .nav-links .dropdown-btn').forEach(a => {
-          const href = a.getAttribute('href');
-          if (href === `#${current}`) {
-            a.classList.add('active');
-          } else if (href?.startsWith('#')) {
-            a.classList.remove('active');
-          }
-        });
-      }
-    }
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        setActiveLink(link);
-        if (navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          menuBtn.textContent = '☰';
-        }
+    // View More Button Toggle
+    document.querySelectorAll('.view-more-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const details = document.getElementById(targetId);
+        const isActive = details.classList.toggle('active');
+        button.textContent = isActive ? 'View Less' : 'View More';
       });
     });
 
@@ -1363,7 +1153,7 @@
       const centerY = rect.height / 2;
       const rotateX = (y - centerY) / 15;
       const rotateY = -(x - centerX) / 15;
-      heroCard.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+      heroCard.style.transform = perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01);
     }
 
     function handleMouseLeave() {
@@ -1384,16 +1174,6 @@
 
     // Handle Window Resize
     window.addEventListener('resize', revealOnScroll);
-
-    // Footer: Social Icon Hover
-    document.querySelectorAll('.social-icon').forEach(icon => {
-      icon.addEventListener('mouseover', () => {
-        icon.style.color = '#60a5fa';
-      });
-      icon.addEventListener('mouseout', () => {
-        icon.style.color = ''; 
-      });
-    });
   </script>
 </body>
 </html>
